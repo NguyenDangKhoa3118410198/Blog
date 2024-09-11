@@ -39,41 +39,41 @@ const Post = ({ post, onEdit, onDelete }) => {
                   </div>
                </div>
                <p className='post-content'>{post.content}</p>
+               <div className='create-comment-form'>
+                  <CreateCommentForm
+                     onAddComment={(comment) => {
+                        onEdit(post.id, {
+                           ...post,
+                           comments: [...post.comments, comment],
+                        });
+                     }}
+                  />
+               </div>
+               <div className='comment-list'>
+                  <CommentList
+                     comments={post.comments}
+                     onAddComment={(comment) => {
+                        onEdit(post.id, {
+                           ...post,
+                           comments: [...post.comments, comment],
+                        });
+                     }}
+                     onEditComment={(commentId, updatedComment) => {
+                        const updatedComments = post.comments.map((comment) =>
+                           comment.id === commentId ? updatedComment : comment
+                        );
+                        onEdit(post.id, { ...post, comments: updatedComments });
+                     }}
+                     onDeleteComment={(commentId) => {
+                        const updatedComments = post.comments.filter(
+                           (comment) => comment.id !== commentId
+                        );
+                        onEdit(post.id, { ...post, comments: updatedComments });
+                     }}
+                  />
+               </div>
             </div>
          )}
-         <div className='comment-list'>
-            <CommentList
-               comments={post.comments}
-               onAddComment={(comment) => {
-                  onEdit(post.id, {
-                     ...post,
-                     comments: [...post.comments, comment],
-                  });
-               }}
-               onEditComment={(commentId, updatedComment) => {
-                  const updatedComments = post.comments.map((comment) =>
-                     comment.id === commentId ? updatedComment : comment
-                  );
-                  onEdit(post.id, { ...post, comments: updatedComments });
-               }}
-               onDeleteComment={(commentId) => {
-                  const updatedComments = post.comments.filter(
-                     (comment) => comment.id !== commentId
-                  );
-                  onEdit(post.id, { ...post, comments: updatedComments });
-               }}
-            />
-         </div>
-         <div className='create-comment-form'>
-            <CreateCommentForm
-               onAddComment={(comment) => {
-                  onEdit(post.id, {
-                     ...post,
-                     comments: [...post.comments, comment],
-                  });
-               }}
-            />
-         </div>
       </div>
    );
 };

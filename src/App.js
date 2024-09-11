@@ -26,18 +26,30 @@ const App = () => {
       localStorage.setItem('posts', JSON.stringify(posts));
    }, [posts]);
 
+   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+   const getRandomDelay = () =>
+      Math.floor(Math.random() * (1000 - 200 + 1)) + 200;
+
    const createPost = (newPost) => {
-      setPosts([...posts, newPost]);
+      delay(getRandomDelay()).then(() => {
+         setPosts((prevPosts) => [...prevPosts, newPost]);
+      });
    };
 
    const editPost = (id, updatedPost) => {
-      setPosts(posts.map((post) => (post.id === id ? updatedPost : post)));
+      delay(getRandomDelay()).then(() => {
+         setPosts((prevPosts) =>
+            prevPosts.map((post) => (post.id === id ? updatedPost : post))
+         );
+      });
    };
 
    const deletePost = (id) => {
-      setPosts(posts.filter((post) => post.id !== id));
+      delay(getRandomDelay()).then(() => {
+         setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+      });
    };
-
    return (
       <div className='app-container'>
          <div className='create-post-form'>

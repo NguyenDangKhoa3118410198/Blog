@@ -1,5 +1,7 @@
 .comment-list-container {
     margin-top: 20px;
+    max-height: 250px;
+    overflow: auto;
 }
 
 .comment-item {

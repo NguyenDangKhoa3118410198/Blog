@@ -12,7 +12,7 @@ const CreateCommentForm = ({ onAddComment }) => {
    };
 
    return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px' }}>
          <input
             type='text'
             value={text}
