@@ -1,0 +1,58 @@
+import React, { useState, useEffect } from 'react';
+import PostList from './components/PostList';
+import CreatePostForm from './components/CreatePostForm';
+import { setupDefaultData } from './setupLocalStorage';
+import './App.css';
+
+const getInitialPosts = () => {
+   const storedPosts = localStorage.getItem('posts');
+   if (storedPosts) {
+      return JSON.parse(storedPosts);
+   }
+   return [];
+};
+
+const App = () => {
+   const [posts, setPosts] = useState(getInitialPosts());
+
+   useEffect(() => {
+      if (posts.length === 0) {
+         setupDefaultData();
+         setPosts(getInitialPosts());
+      }
+   }, [posts]);
+
+   useEffect(() => {
+      localStorage.setItem('posts', JSON.stringify(posts));
+   }, [posts]);
+
+   const createPost = (newPost) => {
+      setPosts([...posts, newPost]);
+   };
+
+   const editPost = (id, updatedPost) => {
+      setPosts(posts.map((post) => (post.id === id ? updatedPost : post)));
+   };
+
+   const deletePost = (id) => {
+      setPosts(posts.filter((post) => post.id !== id));
+   };
+
+   return (
+      <div className='app-container'>
+         <div className='create-post-form'>
+            <CreatePostForm onCreatePost={createPost} />
+         </div>
+         <h1>List Post</h1>
+         <div className='post-list'>
+            <PostList
+               posts={posts}
+               onEditPost={editPost}
+               onDeletePost={deletePost}
+            />
+         </div>
+      </div>
+   );
+};
+
+export default App;

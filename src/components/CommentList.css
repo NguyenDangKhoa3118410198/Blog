@@ -1,0 +1,21 @@
+.comment-list-container {
+    margin-top: 20px;
+}
+
+.comment-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.comment-text {
+    margin: 0;
+}

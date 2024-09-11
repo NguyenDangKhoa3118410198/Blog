@@ -1,0 +1,47 @@
+.post-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.post-content {
+    margin: 10px 0;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-mode {
+    margin-bottom: 10px;
+}
+
+.edit-mode input,
+.edit-mode textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.comment-list {
+    margin-top: 20px;
+}
+
+.create-comment-form {
+    margin-top: 20px;
+}
